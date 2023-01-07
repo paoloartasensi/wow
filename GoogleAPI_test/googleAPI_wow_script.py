@@ -2,7 +2,6 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score
-import ftplib
 import csv
 
 url = 'https://dev.paoloartasensi.it/python/csv/last_dataset.csv'
@@ -34,18 +33,6 @@ with open('coefficients.csv', 'w', newline='') as csvfile:
     # Write intercept to file
     writer.writerow(['intercept', intercept_str])
 
-
-# Connect to FTP server
-ftp_server = ftplib.FTP('185.114.108.114')
-# Login to FTP server
-ftp_server.login('niotron2023', 'csv_wow_2023!')
-
-# Open file in binary read mode
-with open('coefficients.csv', 'rb') as f:
-    # Store file on FTP server
-    ftp_server.storbinary('STOR coefficients.csv', f)
-# Close FTP connection
-ftp_server.quit()
 
 
 #GOOGLE UPLOAD

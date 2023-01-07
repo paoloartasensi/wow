@@ -1,3 +1,8 @@
+# README, this is a copy of the orginal scritp file stored in "MyFlask" Google Project,
+# on Google Cloud Run service, it works with main.py FLASK APP 
+# it will run the Machine Learning and put the file to FTP
+# WARNING, it works from anywhere!
+
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -18,4 +23,31 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 intercept_str = str(model.intercept_).strip('[]')
-print(accuracy)
+
+
+# FTP
+# Open file in write mode
+with open('coefficients.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    # Iterate over features and coefficients
+    for feature, coef in zip(X.columns, model.coef_[0]):
+        # Write feature and coefficient to file
+        writer.writerow([feature, coef])
+    # Convert intercept to string and remove brackets
+    intercept_str = str(model.intercept_)
+    intercept_str = intercept_str.strip('[]')
+    # Write intercept to file
+    writer.writerow(['intercept', intercept_str])
+
+
+# Connect to FTP server
+ftp_server = ftplib.FTP('185.114.108.114')
+# Login to FTP server
+ftp_server.login('niotron2023', 'csv_wow_2023!')
+
+# Open file in binary read mode
+with open('coefficients.csv', 'rb') as f:
+    # Store file on FTP server
+    ftp_server.storbinary('STOR coefficients.csv', f)
+# Close FTP connection
+ftp_server.quit()
