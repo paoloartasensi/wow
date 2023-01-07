@@ -20,8 +20,7 @@ recall = recall_score(y_test, y_pred)
 intercept_str = str(model.intercept_).strip('[]')
 
 
-#FTP
-
+# FTP
 # Open file in write mode
 with open('coefficients.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
@@ -47,8 +46,5 @@ with open('coefficients.csv', 'rb') as f:
     ftp_server.storbinary('STOR coefficients.csv', f)
 # Close FTP connection
 ftp_server.quit()
-
-
-
 
 print(accuracy)
