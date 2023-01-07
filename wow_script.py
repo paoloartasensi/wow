@@ -1,15 +1,10 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score
-import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score, explained_variance_score, confusion_matrix, accuracy_score, classification_report, log_loss, precision_score, recall_score
-import ftplib
 import csv
 
-df = pd.read_csv("/Users/paoloartasensi/Python_Scripts/artabax/last_dataset.csv")
+df = pd.read_csv("/Users/paoloartasensi/Python_Scripts/wow/last_dataset.csv")
 
 X = df[['ax', 'ay', 'az', 'gx', 'gy', 'gz','pitch','roll', 'BAR','totacc' ]]
 y = df['status']
