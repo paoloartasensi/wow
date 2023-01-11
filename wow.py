@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 import ftplib
-import csv
+import json
 
 url = 'https://dev.paoloartasensi.it/python/csv/last_dataset.csv'
 df = pd.read_csv(url)
@@ -25,19 +25,19 @@ recall = recall_score(y_test, y_pred)
 intercept_str = str(model.intercept_).strip('[]')
 
 
-# FTP
 # Open file in write mode
-with open('coefficients.csv', 'w', newline='') as csvfile:
-    writer = csv.writer(csvfile)
+with open('coefficients.json', 'w') as jsonfile:
+    # Initialize an empty dictionary to store the information
+    data = {}
     # Iterate over features and coefficients
     for feature, coef in zip(X.columns, model.coef_[0]):
-        # Write feature and coefficient to file
-        writer.writerow([feature, coef])
-    # Convert intercept to string and remove brackets
-    intercept_str = str(model.intercept_)
-    intercept_str = intercept_str.strip('[]')
-    # Write intercept to file
-    writer.writerow(['intercept', intercept_str])
+        # Add feature and coefficient to dictionary
+        data[feature] = coef
+
+    # Add intercept to dictionary
+    data['intercept'] = model.intercept_[0]
+    # Write dictionary to file
+    json.dump(data, jsonfile)
 
 
 # Connect to FTP server
@@ -45,9 +45,9 @@ ftp_server = ftplib.FTP('185.114.108.114')
 # Login to FTP server
 ftp_server.login('niotron2023', 'csv_wow_2023!')
 
-# Open file in binary read mode
-with open('coefficients.csv', 'rb') as f:
-    # Store file on FTP server
-    ftp_server.storbinary('STOR coefficients.csv', f)
-# Close FTP connection
+# Open the 'coefficients.json' file in binary mode
+with open('coefficients.json', 'rb') as jsonfile:
+    # Store the file on the FTP server
+    ftp_server.storbinary('STOR coefficients.json', jsonfile)
+    # Close FTP connection
 ftp_server.quit()
