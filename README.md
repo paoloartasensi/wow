@@ -6,4 +6,4 @@ We want to help the professional or non-professional athlete calculate their 1RM
 
 For this project we will use the python programming language and current machine learning and classification libraries.
 
-<img src="https://www.atlantistelecom.com/131252-large_default/smartwatch-ticwatch-pro-3-gps-negro.jpg" alt="A description of the image" >
+<img src="https://media.licdn.com/dms/image/C4D2DAQFjO9djF6iGsA/profile-treasury-image-shrink_800_800/0/1672559504642?e=1677531600&v=beta&t=_Ecxt2UfVdo18GHW0bFwZNo0fSDmcpqcqVQTV4f788U" alt="A description of the image" >
