@@ -10,7 +10,7 @@ For this project, we will use the Python programming language and current machin
 ![Wow Image 1](images/gym1.jpg)
 
 
-![Wow Image 2](images/block.jpg)
+![Wow Image 2](images/blocks.jpg)
 
 
 
