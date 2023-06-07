@@ -7,7 +7,11 @@ We want to help the professional or non-professional athlete calculate their 1RM
 For this project, we will use the Python programming language and current machine learning and classification libraries.
 
 
-![Gym Image 1](images/gym1.jpg)
+![Wow Image 1](images/gym1.jpg)
+
+
+![Wow Image 2](images/block.jpg)
+
 
 
 
